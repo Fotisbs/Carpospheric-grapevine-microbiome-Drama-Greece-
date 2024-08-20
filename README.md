@@ -12,3 +12,16 @@
 
 
 ## The provided material includes the code used in the statistical analysis of the study.
+
+For obtaining the code the users need to open a terminal and having the [GitHub tools](https://github.com/git-guides/install-git), git-clone or download the repository, and enter the base folder. E.g:
+
+```
+$ git clone https://github.com/Fotisbs/Carpospheric-grapevine-microbiome-Drama-Greece-.git
+```
+
+In the case of the computational methods, with the "Carpospheric-grapevine-microbiome-Drama-Greece-" folder as working directory, and assuming that the necessary software and R packages are installed, the used code can be executed as described in this Readme.md file. The necessary datasets for performing all sequencing based analysis can be downloaded implementing the code provided in the corresponding repository folders as explained below.
+
+## Description of the order of executed scripts.
+
+Steps 0-2 concern the data retrieval from NCBI and preprocessing, while step 3 and the subfolders concern the actual data analysis for total fungi and bacteria. 
+
