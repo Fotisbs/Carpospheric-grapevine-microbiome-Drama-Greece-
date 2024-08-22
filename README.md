@@ -23,11 +23,79 @@ In the case of the computational methods, with the "Carpospheric-grapevine-micro
 
 ## Description of the order of executed scripts.
 
-Steps 0-2 concern the data retrieval from NCBI and preprocessing, while step 3 and the subfolders concern the actual data analysis for total fungi and bacteria. 
+Steps 0-2 concern the data retrieval from NCBI and preprocessing, while from step 3 and further the subfolders concern the actual data analysis for total fungi and bacteria. 
 
+0) First, it is necessary to download the sequencing data.
+To do so, you need to enter the "0.DownloadData" subfolder of "Fungi" and "Bacteria" folders accordingly and execute the "fetch_data.sh" bash script for each batch (01-03), this assumes that you are located at the working directory "Carpospheric-grapevine-microbiome-Drama-Greece-"). The NCBI submitted amplicons are includes at those 3 batch/files.The script is based on the SRR accession numbers for each batch file and can be found in the 0.DownloadData folder as a.txt file.
+Once the download is done, you need to combine all forward reads to a single file and all reverse reads to another file as well.
+```
+for i in {01..03}
+do
+	cd Fungi/0.DownloadData/batch${i}
+	sh -x fetch_data.sh
+	cat *_1.fastq | gzip > forward.fastq.gz
+	cat *_2.fastq | gzip > reverse.fastq.gz
+	cd ../../../
+	cd Bacteria/0.DownloadData/batch${i}
+	sh -x fetch_data.sh
+	cat *_1.fastq | gzip > forward.fastq.gz
+	cat *_2.fastq | gzip > reverse.fastq.gz
+	cd ../../../
+done
+```
 
+1) Then you need to demultiplex the data according to our own demultiplexing method using our in-house script.
+This requires Flexbar v3.0.3 to be installed.
+A detailed description of our in-house multiplexing approach is provided in our [previous work] (https://github.com/SotiriosVasileiadis/mconsort_tbz_degr#16s).
+You need to enter the folder Fungi/1.Demultiplex and run the following commands (change the MY_PROCS variable to whatever number of logical processors you have available and want to devote).
+the following commands are going to save the demultiplexed files in the Fungi(or Bacteria)/1.Demultiplex/demux_out folder.
+```
+MY_WORKING_DIR_BASE=`pwd`
+for i in {01..03}
+do
+  cd Fungi/1.Demultiplex
+  MY_PROCS=56
+  bash DemuxOwnBCsys_absPATH.sh demux_out${i} ${MY_WORKING_DIR_BASE}/Fungi/0.DownloadData/batch${i}/forward.fastq.gz ${MY_WORKING_DIR_BASE}/Fungi/0.DownloadData/batch${i}/reverse.fastq.gz fun${i}_map_file.txt ${MY_PROCS}
+  cd demux_out${i}/analysis_ready
+  gunzip *.gz # unzips files skipped by the Demux script
+  cd ../../../../
+  cd Bacteria/1.Demultiplex
+  MY_PROCS=56
+  bash DemuxOwnBCsys_absPATH.sh demux_ou${i} ${MY_WORKING_DIR_BASE}/Fungi/0.DownloadData/batch${i}/forward.fastq.gz ${MY_WORKING_DIR_BASE}/Fungi/0.DownloadData/batch${i}/reverse.fastq.gz bac${i}_map_file.txt ${MY_PROCS}
+  cd demux_out${i}/analysis_ready
+  gunzip *.gz # unzips files skipped by the Demux script
+  cd ../../../../
+done
 
+cd Fungi/1.Demultiplex
+mkdir -p demux_out/analysis_ready
+cp demux_out[0-9]/analysis_ready/*.fastq demux_out/analysis_ready/
+cd ../../
 
+cd Bacteria/1.Demultiplex
+mkdir -p demux_out/analysis_ready
+cp demux_out[0-9]/analysis_ready/*.fastq demux_out/analysis_ready/
+cd ../../
+```
+2) Following, the "Vinification Vidiano 2020 Quality-Classification-Phyloseq Object.R" script of the Fungi(or Bacteria)/2.PhyloseqObjectPerp folder is run in order to prepare the final phyloseq object to be used in the data analysis described below. Before running the script make sure that the necessary reference databases are found in the same folder.
+```
+cd Fungi/2.PhyloseqObjectPrep
+# fetch the databases
+wget https://files.plutof.ut.ee/public/orig/1D/B9/1DB95C8AC0A80108BECAF1162D761A8D379AF43E2A4295A3EF353DD1632B645B.gz
+# run the R script
+Fungi Vinification Vinification Vidiano 2020 Quality-Classification-Phyloseq Object.r
+cd ../../
+cd Bacteria/2.PhyloseqObjectPrep
+# fetch the databases
+wget https://zenodo.org/record/4587955/files/silva_nr99_v138.1_train_set.fa.gz
+wget https://zenodo.org/record/4587955/files/silva_nr99_v138.1_wSpecies_train_set.fa.gz
+tar vxf *.gz
+# run the R script
+Bacteria Vinification Vinification Vidiano 2020 Quality-Classification-Phyloseq Object.r
+cd ../../
+```
+3) Data analysis folder include subfolders for each analysis graphs supplied at the researched article "Vintage and terroir are the strongest determinants of grapevine carposphere microbiome in the viticultural zone of Drama, Greece". Subfolders contain the R script to be executed for "Fungi" and "Bacteria" accordingly. In same cases the outcome graphs were digitally corrected for aesthetics reasons only. 
+```
 
 ## Code Usage disclaimer<a name="disclaimer"></a>
 
