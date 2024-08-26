@@ -1,14 +1,14 @@
-# ***Spontaneous vinification supports different microbiota, volatilome and leads to wines with different sensory attributes compared to vinifications inoculated with commercial and indigenous to Vidiano cultivar Saccharomyces cerevisiae ***
+# ***Vintage and terroir are the strongest determinants of grapevine carposphere microbiome in the viticultural zone of Drama, Greece***
 
-### By Bekris F. <sup>1</sup>, Lola D. <sup>2</sup>, Papadopoulou E. <sup>1</sup>, Vasileiadis S. <sup>1</sup>, Paramithiotis S. <sup>3</sup>, Kotseridis Y. <sup>2*</sup>, Karpouzas D.G <sup>1*</sup>
+### By Bekris F. <sup>1</sup>, Papadopoulou E. <sup>1</sup>, Vasileiadis S. <sup>1</sup>, Theocharis S. <sup>2</sup>, Alexandridis T.K. <sup>3</sup>, Koundouras S.<sup>2</sup>, Karpouzas D.G <sup>1*</sup>
 
 ### (\* corr. author)
 
 <sup>1</sup> University of Thessaly, Department of Biochemistry and Biotechnology, Laboratory of Plant and Environmental Biotechnology, 41500 Viopolis – Larissa, Greece
 
-<sup>2</sup> Agricultural University of Athens, Department of Food Science and Human Nutrition, Laboratory of Enology and Alcoholic Drinks (LEAD),  11855 Iera Odos St. 75 – Athens, Greece
+<sup>2</sup> Aristotle University of Thessaloniki, Department of Horticulture, School of Agriculture, Laboratory of Viticulture, 54124 Thessaloniki, Greece
 
-<sup>3</sup> University of Ioannina, Department of Biological Applications and Technology, Laboratory of Microbiology, 45110, Ioannina, Greece
+<sup>3</sup> Aristotle University of Thessaloniki, Department of Hydraulics, Soil Science and Agricultural Engineering, School of Agriculture, Laboratory of Remote Sensing, Spectroscopy and Geographic Information Systems, 54124 Thessaloniki, Greece
 
 
 ## The provided material includes the code used in the statistical analysis of the study.
@@ -16,17 +16,17 @@
 For obtaining the code the users need to open a terminal and having the [GitHub tools](https://github.com/git-guides/install-git), git-clone or download the repository, and enter the base folder. E.g:
 
 ```
-$ git clone https://github.com/Fotisbs/Grapevine_Vinifications_Vidiano_2020.git
+$ git clone https://github.com/Fotisbs/Carpospheric-grapevine-microbiome-Drama-Greece-.git
 ```
 
-In the case of the computational methods, with the "Grapevine_Vinifications_Vidiano_2020" folder as working directory, and assuming that the necessary software and R packages are installed, the used code can be executed as described in this Readme.md file. The necessary datasets for performing all sequencing based analysis can be downloaded implementing the code provided in the corresponding repository folders as explained below.
+In the case of the computational methods, with the "Carpospheric-grapevine-microbiome-Drama-Greece-" folder as working directory, and assuming that the necessary software and R packages are installed, the used code can be executed as described in this Readme.md file. The necessary datasets for performing all sequencing based analysis can be downloaded implementing the code provided in the corresponding repository folders as explained below.
 
 ## Description of the order of executed scripts.
 
 Steps 0-2 concern the data retrieval from NCBI and preprocessing, while step 3 and the subfolders concern the actual data analysis for total fungi and bacteria. 
 
 0) First, it is necessary to download the sequencing data.
-To do so, you need to enter the "0.DownloadData" subfolder of "Fungi" and "Bacteria" folders accordingly and execute the "fetch_data.sh" bash script for each batch (01-03), this assumes that you are located at the working directory "Grapevine_Vinifications_Vidiano_2020"). The NCBI submitted amplicons are includes at those 3 batch/files.The script is based on the SRR accession numbers for each batch file and can be found in the 0.DownloadData folder as a.txt file.
+To do so, you need to enter the "0.DownloadData" subfolder of "Fungi" and "Bacteria" folders accordingly and execute the "fetch_data.sh" bash script for each batch (01-03), this assumes that you are located at the working directory "Carpospheric-grapevine-microbiome-Drama-Greece-"). The NCBI submitted amplicons are includes at those 3 batch/files.The script is based on the SRR accession numbers for each batch file and can be found in the 0.DownloadData folder as a.txt file.
 Once the download is done, you need to combine all forward reads to a single file and all reverse reads to another file as well.
 ```
 for i in {01..03}
@@ -77,13 +77,13 @@ mkdir -p demux_out/analysis_ready
 cp demux_out[0-9]/analysis_ready/*.fastq demux_out/analysis_ready/
 cd ../../
 ```
-2) Following, the "Vinification Vidiano 2020 Quality-Classification-Phyloseq Object.R" script of the Fungi(or Bacteria)/2.PhyloseqObjectPerp folder is run in order to prepare the final phyloseq object to be used in the data analysis described below. Before running the script make sure that the necessary reference databases are found in the same folder.
+2) Following, the "Drama Carpospheric grapevine microbiome Quality-Classification-Phyloseq Object.R" script of the Fungi(or Bacteria)/2.PhyloseqObjectPerp folder is run in order to prepare the final phyloseq object to be used in the data analysis described below. Before running the script make sure that the necessary reference databases are found in the same folder.
 ```
 cd Fungi/2.PhyloseqObjectPrep
 # fetch the databases
 wget https://files.plutof.ut.ee/public/orig/1D/B9/1DB95C8AC0A80108BECAF1162D761A8D379AF43E2A4295A3EF353DD1632B645B.gz
 # run the R script
-Fungi Vinification Vinification Vidiano 2020 Quality-Classification-Phyloseq Object.r
+Fungi Drama Carpospheric grapevine microbiome Quality-Classification-Phyloseq Object.r
 cd ../../
 cd Bacteria/2.PhyloseqObjectPrep
 # fetch the databases
@@ -91,10 +91,10 @@ wget https://zenodo.org/record/4587955/files/silva_nr99_v138.1_train_set.fa.gz
 wget https://zenodo.org/record/4587955/files/silva_nr99_v138.1_wSpecies_train_set.fa.gz
 tar vxf *.gz
 # run the R script
-Bacteria Vinification Vinification Vidiano 2020 Quality-Classification-Phyloseq Object.r
+Bacteria Drama Carpospheric grapevine microbiome Quality-Classification-Phyloseq Object.r
 cd ../../
 ```
-3) Data analysis folder include subfolders for each analysis graphs supplied at the researched article "Spontaneous vinification supports different microbiota, volatilome and leads to wines with different sensory attributes compared to vinifications inoculated with commercial and indigenous to Vidiano cultivar Saccharomyces cerevisiae". Subfolders contain the R script to be executed for "Fungi" and "Bacteria" accordingly. In same cases the outcome graphs were digitally corrected for aesthetics reasons only. 
+3) Data analysis folder include subfolders for each analysis graphs supplied at the researched article "Vintage and terroir are the strongest determinants of grapevine carposphere microbiome in the viticultural zone of Drama, Greece". Subfolders contain the R script to be executed for "Fungi" and "Bacteria" accordingly. In same cases the outcome graphs were digitally corrected for aesthetics reasons only. 
 ```
 
 3a.) Run Bar Plots analysis
