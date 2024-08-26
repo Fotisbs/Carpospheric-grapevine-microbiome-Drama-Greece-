@@ -96,7 +96,6 @@ cd ../../
 ```
 3) Data analysis folder include subfolders for each analysis graphs supplied at the researched article "Vintage and terroir are the strongest determinants of grapevine carposphere microbiome in the viticultural zone of Drama, Greece". Subfolders contain the R script to be executed for "Fungi" and "Bacteria" accordingly. In same cases the outcome graphs were digitally corrected for aesthetics reasons only. 
 ```
-
 ## Code Usage disclaimer<a name="disclaimer"></a>
 
 The following is the disclaimer that applies to all scripts, functions, one-liners, etc. This disclaimer supersedes any disclaimer included in any script, function, one-liner, etc.
