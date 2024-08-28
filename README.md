@@ -26,10 +26,10 @@ In the case of the computational methods, with the "Carpospheric-grapevine-micro
 Steps 0-2 concern the data retrieval from NCBI and preprocessing, while step 3 and the subfolders concern the actual data analysis for total fungi and bacteria. 
 
 0) First, it is necessary to download the sequencing data.
-To do so, you need to enter the "0.DownloadData" subfolder of "Fungi" and "Bacteria" folders accordingly and execute the "fetch_data.sh" bash script for each batch (01-03), this assumes that you are located at the working directory "Carpospheric-grapevine-microbiome-Drama-Greece-"). The NCBI submitted amplicons are includes at those 3 batch/files.The script is based on the SRR accession numbers for each batch file and can be found in the 0.DownloadData folder as a.txt file.
+To do so, you need to enter the "0.DownloadData" subfolder of "Fungi" and "Bacteria" folders accordingly and execute the "fetch_data.sh" bash script for each batch (01-02), this assumes that you are located at the working directory "Carpospheric-grapevine-microbiome-Drama-Greece-"). The NCBI submitted amplicons are includes at those 2 batch/files.The script is based on the SRR accession numbers for each batch file and can be found in the 0.DownloadData folder as a.txt file.
 Once the download is done, you need to combine all forward reads to a single file and all reverse reads to another file as well.
 ```
-for i in {01..03}
+for i in {01....02}
 do
 	cd Fungi/0.DownloadData/batch${i}
 	sh -x fetch_data.sh
@@ -51,7 +51,7 @@ You need to enter the folder Fungi/1.Demultiplex and run the following commands 
 the following commands are going to save the demultiplexed files in the Fungi(or Bacteria)/1.Demultiplex/demux_out folder.
 ```
 MY_WORKING_DIR_BASE=`pwd`
-for i in {01..03}
+for i in {01....02}
 do
   cd Fungi/1.Demultiplex
   MY_PROCS=56
@@ -97,15 +97,15 @@ cd ../../
 3) Data analysis folder include subfolders for each analysis graphs supplied at the researched article "Vintage and terroir are the strongest determinants of grapevine carposphere microbiome in the viticultural zone of Drama, Greece". Subfolders contain the R script to be executed for "Fungi" and "Bacteria" accordingly. In same cases the outcome graphs were digitally corrected for aesthetics reasons only. 
 ```
 
-3a.) Run Bar Plots analysis
+3a.) Run Bar Plots analysis........
 
-3b.) Run NMDS and Pairwise-PERMANOVA  analysis
+3b.) Run NMDS and Pairwise-PERMANOVA  analysis........
 
-3c.) Run Principal Component analysis of volatile loadings 
+3c.) Run Principal Component analysis of volatile loadings........ 
 
-3d.) Run Ordination Triplot analysis
+3d.) Run Ordination Triplot analysis.........
 
-3e.) Run PERMANOVA analysis
+3e.) Run PERMANOVA analysis.........
 
 cd Fungi/3.DataAnalysis/PERMANOVA
 Rscript PERMANOVA.R
