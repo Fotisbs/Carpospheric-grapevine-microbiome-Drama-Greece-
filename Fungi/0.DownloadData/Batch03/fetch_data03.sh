@@ -1,5 +1,5 @@
 # The following requires the the SRA-toolkit v2.8.2 to be installed.
-for i in `cat SRR_accessionsbatch01.txt`
+for i in `cat SRR_accessionsbatch03.txt`
 do
 	fastq-dump -I --split-files ${i}
 done
