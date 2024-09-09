@@ -77,13 +77,13 @@ mkdir -p demux_out/analysis_ready
 cp demux_out[0-9]/analysis_ready/*.fastq demux_out/analysis_ready/
 cd ../../
 ```
-2) Following, the "Drama Carpospheric grapevine microbiome Quality-Classification-Phyloseq Object.R" script of the Fungi(or Bacteria)/2.PhyloseqObjectPerp folder is run in order to prepare the final phyloseq object to be used in the data analysis described below. Before running the script make sure that the necessary reference databases are found in the same folder.
+2) Following, the "Drama Carpospheric grapevine microbiome Quality-Classification-Phyloseq Object.R" script of the Fungi(or Bacteria)/2.PhyloseqObjectPerp folder is run in order to prepare the final phyloseq object to be used in the data analysis described below. Before running the script make sure that the necessary reference databases are found in the same folder. The raw phyloseq object for fungi and bacteria that should be constructed following the guidelines from the previous steps and before Phyloseq Object Preparation, is also supplied in the PhyloseqObjectPerp folder.
 ```
 cd Fungi/2.PhyloseqObjectPrep
-# fetch the databases
+# fetch the database s
 wget https://files.plutof.ut.ee/public/orig/1D/B9/1DB95C8AC0A80108BECAF1162D761A8D379AF43E2A4295A3EF353DD1632B645B.gz
 # run the R script
-Fungi Drama Carpospheric grapevine microbiome Quality-Classification-Phyloseq Object.r
+Fungi Drama Carpospheric grapevine microbiome PhyloseqObjectPrep.R.r
 cd ../../
 cd Bacteria/2.PhyloseqObjectPrep
 # fetch the databases
@@ -91,7 +91,7 @@ wget https://zenodo.org/record/4587955/files/silva_nr99_v138.1_train_set.fa.gz
 wget https://zenodo.org/record/4587955/files/silva_nr99_v138.1_wSpecies_train_set.fa.gz
 tar vxf *.gz
 # run the R script
-Bacteria Drama Carpospheric grapevine microbiome Quality-Classification-Phyloseq Object.r
+Bacteria Drama Carpospheric grapevine microbiome PhyloseqObjectPrep.R.r
 cd ../../
 ```
 3) Data analysis folder include subfolders for each analysis graphs supplied at the researched article "Vintage and terroir are the strongest determinants of grapevine carposphere microbiome in the viticultural zone of Drama, Greece". The subfolders are seperated to main and supplementary figures and tables. Subfolders contain the R script to be executed for "Fungi" and "Bacteria" accordingly. 
