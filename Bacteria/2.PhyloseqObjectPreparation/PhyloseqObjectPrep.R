@@ -1,5 +1,7 @@
 ##Start the analysis Drama Terroir by uploading the phyloseq object
-Drama_Terroir_Bacteria_Fruits.rds
+Drama_Terroir_Bacteria_Fruits <- readRDS(".........../Drama_Terroir_Bacteria_Fruits.RDS")
+
+Drama_Terroir_Bacteria_Fruits
 
 ##Firstly remove taxa without taxonomy assignment at Kingdom and Phylum level and remove all the other Kingdoms beside Bacteria
 table(tax_table(Drama_Terroir_Bacteria_Fruits)[, "Kingdom"], exclude = NULL)
