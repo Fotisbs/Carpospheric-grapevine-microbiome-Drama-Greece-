@@ -1,5 +1,7 @@
 ##Start the analysis Drama Terroir by uploading the phyloseq object
-Drama_Terroir_Fungi_Fruits.rds
+Drama_Terroir_Fungi_Fruits <- readRDS(".........../Drama_Terroir_Fungi_Fruits.RDS")
+
+Drama_Terroir_Fungi_Fruits
 
 ##Firstly remove taxa without taxonomy assignment at Kingdom and Phylum level and select only Phylum of p__Ascomycota and p__Basidiomycota
 table(tax_table(Drama_Terroir_Fungi_Fruits)[, "Kingdom"], exclude = NULL)
