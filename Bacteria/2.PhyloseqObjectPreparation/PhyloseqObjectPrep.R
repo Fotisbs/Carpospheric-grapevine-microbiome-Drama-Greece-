@@ -1,4 +1,4 @@
-##Start the analysis Drama Terroir by uploading the phyloseq object
+##Continue the analysis Drama Terroir by uploading the phyloseq object constructed in the previous steps, otherwise upload the .RDS object supplied in the file## 
 Drama_Terroir_Bacteria_Fruits <- readRDS(".........../Drama_Terroir_Bacteria_Fruits.RDS")
 
 Drama_Terroir_Bacteria_Fruits
