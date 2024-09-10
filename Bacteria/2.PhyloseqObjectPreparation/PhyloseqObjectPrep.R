@@ -38,8 +38,8 @@ dev.off()
 
 ##sequence quality filtering and control, error modelling, and dereplication##
 ##set the file paths where the quality controlled sequences are going to be saved##
-filtFs <- file.path("filtered_fun_wd", paste(sample.names, "_F_filt.fastq.gz", sep = ""))
-filtRs <- file.path("filtered_fun_wd", paste(sample.names, "_R_filt.fastq.gz", sep = ""))
+filtFs <- file.path("filtered_bac_wd", paste(sample.names, "_F_filt.fastq.gz", sep = ""))
+filtRs <- file.path("filtered_bac_wd", paste(sample.names, "_R_filt.fastq.gz", sep = ""))
 
 ##filter the sequences and save then in the folders provided above and get their statistics in a table##
 out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, trimLeft = 11,
