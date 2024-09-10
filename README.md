@@ -77,7 +77,7 @@ mkdir -p demux_out/analysis_ready
 cp demux_out[0-9]/analysis_ready/*.fastq demux_out/analysis_ready/
 cd ../../
 ```
-2) Following, the "Drama Carpospheric grapevine microbiome PhyloseqObjectPrep.R" script of the Fungi(or Bacteria)/2.PhyloseqObjectPerp folder is run in order to prepare the final phyloseq object to be used in the data analysis described below. Before running the script make sure that the necessary reference databases are found in the same folder. The raw phyloseq object for fungi and bacteria that should be constructed following the guidelines from the previous steps and before Phyloseq Object Preparation, is also supplied in the PhyloseqObjectPerp folder.
+2) Following, the "Drama Carpospheric grapevine microbiome PhyloseqObjectPrep.R" script of the Fungi(or Bacteria)/2.PhyloseqObjectPerp folder is run in order to prepare the final phyloseq object to be used in the data analysis described below. Before running the script make sure that the necessary reference databases are found in the same folder. The raw phyloseq object for fungi and bacteria should be constructed following the guidelines from the previous steps and before Phyloseq Object Preparation, the Phyloseq Object along with samdf file are also supplied in the PhyloseqObjectPerp folder for convenient.
 ```
 cd Fungi/2.PhyloseqObjectPrep
 # fetch the database s
