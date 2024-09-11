@@ -190,4 +190,6 @@ htmp_plot(htmp_mat = htmp_mat,
 
 dev.off()
 
+#Now you have to run the same script for Terroir_Unit and Vintage factors
+                                      
 DONE
